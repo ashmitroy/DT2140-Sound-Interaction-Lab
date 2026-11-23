@@ -69,10 +69,14 @@ function accelerationChange(accx, accy, accz) {
 // } 
 // I tried to use the above function to get the gain from the accelerometer but it was not working as expected. So I commented it out and used the below function instead.
 function rotationChange(rotx, roty, rotz) {
+    const tilt = constrain(Math.abs(roty), 0, 90);
+    const gain = map(tilt, 0, 90, 0, 1);
+
+    playAudio(gain, gain);
 }
 
 function mousePressed() {
-    //playAudio(mouseX/windowWidth)
+    playAudio(mouseX/windowWidth, mouseY/windowHeight);
     // Use this for debugging from the desktop!
 }
 
@@ -84,7 +88,7 @@ function deviceMoved() {
 function deviceTurned() {
     const gain = 1;
     threshVals[1] = turnAxis;
-    playAudio(0.1, gain); 
+    //playAudio(0.1, gain); 
 }
 function deviceShaken() {
     shaketimer = millis();
