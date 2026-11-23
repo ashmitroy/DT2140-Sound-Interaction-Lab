@@ -56,10 +56,14 @@ function accelerationChange(accx, accy, accz) {
 
     // Estimate movement beyond gravity; tune these thresholds on your phone.
     const movement = Math.abs(Math.hypot(accx, accy, accz) - 9.81);
-    const gain = Math.max(0, Math.min(1, (movement - 0.4) / (4 - 0.4)));
-    playAudio(0.1, 0.1);
+    let gain = 0;
 
-    ;
+if (movement > 0.4) {
+    gain = Math.max(0, Math.min(1, (movement - 0.4) / 3.6));
+}
+
+playAudio(0.1, gain);
+
 }
 
 function rotationChange(rotx, roty, rotz) {
