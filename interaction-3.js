@@ -57,6 +57,7 @@ function accelerationChange(accx, accy, accz) {
     // Estimate movement beyond gravity; tune these thresholds on your phone.
     const movement = Math.abs(Math.hypot(accx, accy, accz) - 9.81);
     const gain = Math.max(0, Math.min(1, (movement - 0.4) / (4 - 0.4)));
+    playAudio(0.5, gain);
 
     ;
 }
