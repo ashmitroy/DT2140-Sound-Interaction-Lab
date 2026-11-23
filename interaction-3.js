@@ -58,7 +58,7 @@ function accelerationChange(accx, accy, accz) {
     const movement = Math.abs(Math.hypot(accx, accy, accz) - 9.81);
     const gain = Math.max(0, Math.min(1, (movement - 0.4) / (4 - 0.4)));
 
-    dspNode.setParamValue("/brass/blower/breathGain", gain);
+    ;
 }
 
 function rotationChange(rotx, roty, rotz) {
