@@ -51,21 +51,21 @@ brass.createDSP(audioContext, 1024)
 //
 //==========================================================================================
 
-function accelerationChange(accx, accy, accz) {
-    if (!dspNode || audioContext.state === "suspended") return;
+// function accelerationChange(accx, accy, accz) {
+//     if (!dspNode || audioContext.state === "suspended") return;
 
-    // Estimate movement beyond gravity; tune these thresholds on your phone.
-    const movement = Math.abs(Math.hypot(accx, accy, accz));
-    let gain = 0;
+//     // Estimate movement beyond gravity; tune these thresholds on your phone.
+//     const movement = Math.abs(Math.hypot(accx, accy, accz));
+//     let gain = 0;
 
-if (movement > 0.4) {
-    gain = Math.max(0, Math.min(1, (movement - 0.4) / 3.6));
-}
+// if (movement > 0.4) {
+//     gain = Math.max(0, Math.min(1, (movement - 0.4) / 3.6));
+// }
 
-playAudio(0.1, gain);
+// playAudio(0.1, gain);
 
-}
-
+// } 
+// I tried to use the above function to get the gain from the accelerometer but it was not working as expected. So I commented it out and used the below function instead.
 function rotationChange(rotx, roty, rotz) {
 }
 
@@ -81,11 +81,12 @@ function deviceMoved() {
 
 function deviceTurned() {
     threshVals[1] = turnAxis;
+    playAudio(); 
 }
 function deviceShaken() {
     shaketimer = millis();
     statusLabels[0].style("color", "pink");
-    //playAudio();
+    //playAudio();  
 }
 
 function getMinMaxParam(address) {

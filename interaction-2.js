@@ -71,7 +71,7 @@ function deviceMoved() {
 
 function deviceTurned() {
     threshVals[1] = turnAxis;
-    playAudio();
+   //playAudio();
 }
 function deviceShaken() {
     shaketimer = millis();
