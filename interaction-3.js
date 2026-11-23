@@ -80,8 +80,9 @@ function deviceMoved() {
 }
 
 function deviceTurned() {
+    const gain = 1;
     threshVals[1] = turnAxis;
-    playAudio(); 
+    playAudio(0.1, gain); 
 }
 function deviceShaken() {
     shaketimer = millis();

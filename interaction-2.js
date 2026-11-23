@@ -59,19 +59,19 @@ function rotationChange(rotx, roty, rotz) {
 }
 
 function mousePressed() {
-    playAudio()
+    playAudio();
     // Use this for debugging from the desktop!
 }
 
 function deviceMoved() {
     movetimer = millis();
     statusLabels[2].style("color", "pink");
-    playAudio();
+    playAudio()
 }
 
 function deviceTurned() {
     threshVals[1] = turnAxis;
-   //playAudio();
+      //playAudio();
 }
 function deviceShaken() {
     shaketimer = millis();
