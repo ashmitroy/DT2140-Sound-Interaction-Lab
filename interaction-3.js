@@ -52,14 +52,20 @@ brass.createDSP(audioContext, 1024)
 //==========================================================================================
 
 function accelerationChange(accx, accy, accz) {
-    // playAudio()
+    if (!dspNode || audioContext.state === "suspended") return;
+
+    // Estimate movement beyond gravity; tune these thresholds on your phone.
+    const movement = Math.abs(Math.hypot(accx, accy, accz) - 9.81);
+    const gain = Math.max(0, Math.min(1, (movement - 0.4) / (4 - 0.4)));
+
+    dspNode.setParamValue("/brass/blower/breathGain", gain);
 }
 
 function rotationChange(rotx, roty, rotz) {
 }
 
 function mousePressed() {
-    playAudio(mouseX/windowWidth)
+    //playAudio(mouseX/windowWidth)
     // Use this for debugging from the desktop!
 }
 
@@ -74,7 +80,7 @@ function deviceTurned() {
 function deviceShaken() {
     shaketimer = millis();
     statusLabels[0].style("color", "pink");
-    playAudio();
+    //playAudio();
 }
 
 function getMinMaxParam(address) {
@@ -95,7 +101,7 @@ function getMinMaxParam(address) {
 //
 //==========================================================================================
 
-function playAudio(pressure) {
+function playAudio(pressure, breathGain) {
     if (!dspNode) {
         return;
     }
@@ -104,6 +110,8 @@ function playAudio(pressure) {
     }
     console.log(pressure)
     dspNode.setParamValue("/brass/blower/pressure", pressure)
+    console.log(breathGain)
+    dspNode.setParamValue("/brass/blower/breathGain", breathGain)
 }
 
 //==========================================================================================
