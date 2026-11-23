@@ -55,7 +55,7 @@ function accelerationChange(accx, accy, accz) {
     if (!dspNode || audioContext.state === "suspended") return;
 
     // Estimate movement beyond gravity; tune these thresholds on your phone.
-    const movement = Math.abs(Math.hypot(accx, accy, accz) - 9.81);
+    const movement = Math.abs(Math.hypot(accx, accy, accz));
     let gain = 0;
 
 if (movement > 0.4) {
