@@ -51,6 +51,8 @@ brass.createDSP(audioContext, 1024)
 //
 //==========================================================================================
 
+function accelerationChange(accx, accy, accz) {
+}
 // function accelerationChange(accx, accy, accz) {
 //     if (!dspNode || audioContext.state === "suspended") return;
 
